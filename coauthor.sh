@@ -22,6 +22,10 @@ git commit --allow-empty -m "Totally Legit Co-Author
 Co-authored-by: Arch Warden <tombos255+archwarden@gmail.com>"
 
 
+# Push commit to current branch
+git push
+
+
 # Create PR from $1 to master
 gh pr create --base master --head "$1" --title "PR from $1 to master" --body "Pull request from $1 to master."
 
