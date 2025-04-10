@@ -3,10 +3,10 @@ OUTPUT = TLC.SH
 MINIFIED_DIR = src/minified
 
 all: $(OUTPUT)
-	@bash $(SRC_DIR)/compile.sh
+	@bash $(SRC_DIR)/00_compile.sh
 
 minify:
-	@bash $(SRC_DIR)/minify.sh
+	@bash $(SRC_DIR)/01_minify.sh
 
 clean:
 	@echo "Cleaning up..."
