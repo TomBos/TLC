@@ -15,9 +15,9 @@ for word in "${words[@]}"; do
     git push --set-upstream origin "$word"
 
     # Create PR pointing to master
-    gh pr create --base master --head "A" --title "B" --body "C"
+    gh pr create --base master --head "$word" --title "B" --body "C"
 
     # Merge the PR and delete current branch 
-    gh pr merge "A" --merge --delete-branch
+    gh pr merge "$word" --merge --delete-branch
 done
 

@@ -13,7 +13,7 @@ for f in ./*.sh; do
     continue
   fi
   
-  awk '!/^\s*#/ && !/^\s*$/' "$f" > "./minified/minified_$(basename "$f")"
+  awk '!/^\s*#/ && !/^\s*$/' "$f" > "./minified/$(basename "$f")"
 
 done
 
