@@ -1,17 +1,25 @@
 SRC_DIR = src
-OUTPUT = TLC.SH
 MINIFIED_DIR = src/minified
+OUTPUT = TLC.SH
 
-all: $(OUTPUT)
-	@bash $(SRC_DIR)/00_compile.sh
+all: minify $(OUTPUT)
 
+# Target to run the minify script
 minify:
+	@echo "Running minification..."
 	@bash $(SRC_DIR)/01_minify.sh
+	@echo "Minification completed!"
 
+# Target to generate TLC.SH from minified content
+$(OUTPUT): $(MINIFIED_DIR)/00_compile.sh
+	@echo "Running compile script..."
+	@bash $(SRC_DIR)/00_compile.sh
+	@echo "Compilation completed"
+
+# Clean up minified files and output
 clean:
 	@echo "Cleaning up..."
-	@rm -f $(OUTPUT)
-	@rm -rf $(MINIFIED_DIR)
+	@rm -rf $(MINIFIED_DIR) $(OUTPUT)
 
-.PHONY: all clean
+.PHONY: all minify clean
 
