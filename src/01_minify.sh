@@ -17,5 +17,5 @@ for f in ./*.sh; do
 
 done
 
-
-
+# Move compiler inside the minified DIR
+cp -pr "00_compile.sh" "./minified/00_compile.sh"
