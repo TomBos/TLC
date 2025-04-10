@@ -1,21 +1,25 @@
 #!/usr/bin/env bash
 
-# Dont include this files
+# Get the directory where the script is located
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
 EXCLUDED=("01_minify.sh" "00_compile.sh")
 
-# Ensure dir exists
-mkdir -p ./minified
+mkdir -p "$SCRIPT_DIR/minified"
 
-# Loop trought all .sh file except the excluded ones
-for f in ./*.sh; do
-  if [[ " ${EXCLUDED[*]} " =~ " $(basename "$f") " ]]; then
-    echo "Excluding $f"
-    continue
-  fi
-  
-  awk '!/^\s*#/ && !/^\s*$/' "$f" > "./minified/$(basename "$f")"
+for f in "$SCRIPT_DIR"/*.sh; do
+    # Skip excluded files
+    if [[ " ${EXCLUDED[@]} " =~ " $(basename "$f") " ]]; then
+        continue
+    fi
 
+    # Process the file: remove comments and empty lines
+    awk '!/^\s*#/ && !/^\s*$/' "$f" > "$SCRIPT_DIR/minified/$(basename "$f")"
 done
 
-# Move compiler inside the minified DIR
-cp -pr "00_compile.sh" "./minified/00_compile.sh"
+# Copy 00_compile.sh to the minified folder
+if [[ -f "$SCRIPT_DIR/00_compile.sh" ]]; then
+    cp -pr "$SCRIPT_DIR/00_compile.sh" "$SCRIPT_DIR/minified/00_compile.sh"
+else
+    echo "Error: 00_compile.sh not found"
+fi
+
