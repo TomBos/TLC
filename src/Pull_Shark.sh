@@ -8,16 +8,16 @@ for word in "${words[@]}"; do
     git checkout -b "$word"
 
     # Add commit
-    git commit --allow-empty -m "Totally Legit Co-Author
-    Co-authored-by: Arch Warden <tombos255+archwarden@gmail.com>"
+    # 1 Char commit - 1 byte
+    git commit --allow-empty -m "A"
 
     # Push commit to current branch
     git push --set-upstream origin "$word"
 
     # Create PR pointing to master
-    gh pr create --base master --head "$word" --title "PR from $word to master" --body "Pull request from $word to master."
+    gh pr create --base master --head "A" --title "B" --body "C"
 
     # Merge the PR and delete current branch 
-    gh pr merge "$word" --merge --delete-branch
+    gh pr merge "A" --merge --delete-branch
 done
 
