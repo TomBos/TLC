@@ -11,19 +11,33 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Git
       run: |
         git config --global user.name "Arch Warden"
         git config --global user.email "tombos255+archwarden@gmail.com"
+    
+    - name: Ensure the build branch exists
+      run: |
+        git fetch origin
+        git checkout -b build || git checkout build
 
     - name: Install Make
       run: sudo apt-get install make
 
-    - name: Make build
+    - name: Build project
       run: make build
 
     - name: Deploy to GitHub Pages
       run: make deploy
+
+    - name: Commit changes
+      run: |
+        git add .
+        git commit -m "Deploy to GitHub Pages" || echo "No changes to commit"
+
+    - name: Push to build branch
+      run: |
+        git push origin build || echo "Failed to push to the build branch"
 
