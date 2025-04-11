@@ -1,0 +1,29 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "Arch Warden"
+        git config --global user.email "tombos255+archwarden@gmail.com"
+
+    - name: Install Make
+      run: sudo apt-get install make
+
+    - name: Make build
+      run: make build
+
+    - name: Deploy to GitHub Pages
+      run: make deploy
+
