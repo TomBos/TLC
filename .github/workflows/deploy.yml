@@ -34,21 +34,12 @@ jobs:
     - name: Make deploy
       run: make deploy
 
-    - name: Check for modified files
-      run: git status
-    
-    - name: Check staged files
-      run: git diff --name-only --cached
-    
-    - name: Show diff
-      run: git diff
+    - name: Show Files
+      run: ls -la
 
-    - name: Force add files
-      run: git add -A
+    - name: Shows Files 2
+      run: ls -la src/
     
-    - name: Show changes before commit
-      run: git diff
-
     - name: Commit changes
       run: |
         git add .
