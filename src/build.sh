@@ -17,5 +17,5 @@ $(cat "$ROOT_DIR/TLC.sh")
 </html>
 EOF
 
-echo "HTML file created at $ROOT_DIR/script_content.html"
+echo "HTML file created at $ROOT_DIR/index.html"
 
