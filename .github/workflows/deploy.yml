@@ -25,6 +25,13 @@ jobs:
           git fetch
           git checkout master
           git pull
+      
+      - name: 🧹 Clear local build branch
+        run: |
+          git checkout build 
+          rm -rf .
+          git checkout master
+
 
       - name: ⚙️ Install Make
         run: sudo apt-get install make
