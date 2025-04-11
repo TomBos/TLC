@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Force interactive mode if not already in it
+[ -t 0 ] && PS1='> ' || exec bash -i
+
 create_pull_request() {
   # Source wordlist (branch names)
   mapfile -t words < word_list.txt
