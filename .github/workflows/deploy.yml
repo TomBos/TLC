@@ -10,44 +10,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: ⬇️ Checkout repository
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.USER_TOKEN }}
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.USER_TOKEN }}
 
-    - name: 🛠️ Set up Git
-      run: |
-        git config --global user.name "Arch Warden"
-        git config --global user.email "tombos255+archwarden@gmail.com"
-    
-    - name: 🔄 Ensure new data
-      run: |
-        git fetch
-        git checkout master
-        git pull
+      - name: 🛠️ Set up Git
+        run: |
+          git config --global user.name "Arch Warden"
+          git config --global user.email "tombos255+archwarden@gmail.com"
+      
+      - name: 🔄 Ensure new data
+        run: |
+          git fetch
+          git checkout master
+          git pull
 
-    - name: ⚙️ Install Make
-      run: sudo apt-get install make
+      - name: ⚙️ Install Make
+        run: sudo apt-get install make
 
-    - name: 🏗️ Build project
-      run: make build
+      - name: 🏗️ Build project
+        run: make build
 
-    - name: 🚀 Make deploy
-      run: make deploy
+      - name: 🚀 Make deploy
+        run: make deploy
 
-    - name: 🗂️ Stash Files
-      run: git stash
+      - name: 🗂️ Stash Files
+        run: git stash
 
-    - name: 🔄 Checkout to build and pop stash
-      run: git checkout build
-           git stash pop
+      - name: 🔄 Checkout to build and pop stash
+        run: git checkout build
+             git stash pop
 
-    - name: ✅ Commit changes
-      run: |
-        git add .
-        git commit -m "Deploy to GitHub Pages" || echo "No changes to commit"
+      - name: ✅ Commit changes
+        run: |
+          git add .
+          git commit -m "Deploy to GitHub Pages" || echo "No changes to commit"
 
-    - name: ⬆️ Push to build branch
-      run: |
-        git push --all -f https://x-access-token:${{ secrets.USER_TOKEN }}@github.com/${{ github.repository }}.git
+      - name: ⬆️ Push to build branch
+        run: |
+          git push --all -f https://x-access-token:${{ secrets.USER_TOKEN }}@github.com/${{ github.repository }}.git
 
