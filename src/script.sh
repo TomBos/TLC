@@ -31,5 +31,8 @@ ssh -qT git@github.com >/dev/null 2>&1; [ $? -ne 1 ] && echo "SSH connection to 
 
 echo "Checking Github CLI status"
 
-gh auth status &>/dev/null || echo "User is NOT authenticated with GitHub CLI."
+gh auth status &>/dev/null || { echo "User is NOT authenticated with GitHub CLI." && exit 1 }
 
+read -p "Input test wget: " INPUT
+
+echo "$INPUT"
