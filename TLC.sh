@@ -13,9 +13,28 @@ create_pull_request() {
     gh pr merge "$word" --merge --delete-branch
   done
 }
-echo "Establishing SSH connection to github.com ..."
-ssh -qT git@github.com >/dev/null 2>&1; [ $? -ne 1 ] && echo "SSH connection to GitHub failed. Please check your SSH configuration."
+display_banner() {
+ cat << "EOF" 
+__/\\\\\\\\\\\\\\\__/\\\____________________/\\\\\\\\\_        
+__\///////\\\/////__\/\\\_________________/\\\////////__       
+_________\/\\\_______\/\\\_______________/\\\/___________      
+__________\/\\\_______\/\\\______________/\\\_____________     
+___________\/\\\_______\/\\\_____________\/\\\_____________    
+____________\/\\\_______\/\\\_____________\//\\\____________   
+_____________\/\\\_______\/\\\______________\///\\\__________  
+______________\/\\\_______\/\\\\\\\\\\\\\\\____\////\\\\\\\\\_ 
+_______________\///________\///////////////________\/////////__
+EOF
+}
 echo "Checking Github CLI status"
-gh auth status &>/dev/null || { echo "User is NOT authenticated with GitHub CLI." && exit 1 }
-read -p "Input test wget: " INPUT
-echo "$INPUT"
+gh auth status &>/dev/null
+if [ $? -ne 0 ]; then
+  echo "User is NOT authenticated with GitHub CLI."
+  exit 1
+fi
+clear && display_banner
+echo -e "Select which GitHub achievement you want to unlock:
+1) Pair Extraordinaire     2) Pull Shark
+3) YOLO                    4) Quickdraw \n"
+read -p "Selected: " SELECTION
+echo "You selected: $SELECTION"
