@@ -39,5 +39,4 @@ jobs:
 
     - name: Push to build branch
       run: |
-        git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
-
+        git push --all -f https://x-access-token:${{ secrets.USER_TOKEN }}@github.com/${{ github.repository }}.git
