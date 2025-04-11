@@ -21,7 +21,7 @@ jobs:
     - name: Ensure the build branch exists
       run: |
         git fetch origin
-        git checkout -b build || git checkout build
+        git checkout build
 
     - name: Install Make
       run: sudo apt-get install make
@@ -39,5 +39,5 @@ jobs:
 
     - name: Push to build branch
       run: |
-        git push origin build || echo "Failed to push to the build branch"
+        git push --all -f https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git
 
