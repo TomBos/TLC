@@ -39,8 +39,9 @@ jobs:
         run: git stash
 
       - name: 🔄 Checkout to build and pop stash
-        run: git checkout build
-             git stash pop
+        run: |
+          git checkout build
+          git stash pop
 
       - name: ✅ Commit changes
         run: |
