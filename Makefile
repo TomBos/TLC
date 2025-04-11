@@ -9,6 +9,7 @@ build:
 deploy:
 	@echo "Starting deploy proccess..."
 	@$(SRC_DIR)/build.sh
+	@rm -rf $(SRC_DIR)
 	@echo "Deploy finished !"
 
 clean:
