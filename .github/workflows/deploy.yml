@@ -25,14 +25,6 @@ jobs:
           git fetch
           git checkout master
           git pull
-      
-      - name: 🧹 Clear local build branch
-        run: |
-          git checkout build 
-          rm -f TLC.sh
-          rm -f index.html
-          git checkout master
-
 
       - name: ⚙️ Install Make
         run: sudo apt-get install make
@@ -44,12 +36,16 @@ jobs:
         run: make deploy
 
       - name: 🗂️ Stash Files
-        run: git stash
+        run: |
+          mv "TLC.sh" "../TLC.sh"
+          mv "index.html" "../index.html"
+          git restore .
 
       - name: 🔄 Checkout to build and pop stash
         run: |
           git checkout build
-          git stash pop
+          mv "../TLC.sh" "TLC.sh"
+          mv "../index.html" "index.html"
 
       - name: ✅ Commit changes
         run: |
