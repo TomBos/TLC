@@ -31,8 +31,23 @@ jobs:
     - name: Build project
       run: make build
 
-    - name: Deploy to GitHub Pages
+    - name: Make deploy
       run: make deploy
+
+    - name: Check for modified files
+      run: git status
+    
+    - name: Check staged files
+      run: git diff --name-only --cached
+    
+    - name: Show diff
+      run: git diff
+
+    - name: Force add files
+      run: git add -A
+    
+    - name: Show changes before commit
+      run: git diff
 
     - name: Commit changes
       run: |

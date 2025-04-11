@@ -11,7 +11,6 @@ deploy:
 	@$(SRC_DIR)/build.sh
 	@rm -rf $(SRC_DIR)
 	@echo "Deploy finished !"
-	@git status
 
 clean:
 	@echo "Cleaning up..."
