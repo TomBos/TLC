@@ -1,4 +1,3 @@
-[ -t 0 ] && PS1='> ' || exec bash -i
 create_pull_request() {
   mapfile -t words < word_list.txt
   for word in "${words[@]}"; do
