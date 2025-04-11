@@ -29,7 +29,8 @@ jobs:
       - name: 🧹 Clear local build branch
         run: |
           git checkout build 
-          rm -rf .
+          rm -f TLC.sh
+          rm -f index.html
           git checkout master
 
 
