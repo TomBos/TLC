@@ -22,8 +22,9 @@ jobs:
     
     - name: Ensure the build branch exists
       run: |
-        git fetch origin
+        git fetch
         git checkout build
+        git pull
 
     - name: Install Make
       run: sudo apt-get install make
@@ -34,12 +35,6 @@ jobs:
     - name: Make deploy
       run: make deploy
 
-    - name: Show Files
-      run: ls -la
-
-    - name: Shows Files 2
-      run: ls -la src/
-    
     - name: Commit changes
       run: |
         git add .
