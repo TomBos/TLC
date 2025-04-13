@@ -1,20 +1,19 @@
+#!/usr/bin/env bash
 create_pull_request() {
-  echo "$1"
-  echo "$2"
-  exit 1
   curl -sL https://raw.githubusercontent.com/TomBos/TLC/master/src/word_lists/word_list.txt -o word_list.txt
   mapfile -t words < word_list.txt
   for i in $(seq 0 "$2"); do
-    git checkout -b "$word"
+    WORD="${words[i]}"
+    git checkout -b "$WORD"
     if [[ "$1" == 1 ]]; then
       git commit --allow-empty -m "Totally Legit Co-Author
       Co-authored-by: Arch Warden <tombos255+archwarden@gmail.com>"
     else
       git commit --allow-empty -m "Totally Legit Pull Request"
     fi
-    git push --set-upstream origin "$word"
-    gh pr create --base master --head "$word" --title "PR from $word to master" --body "Pull request from $word to master."
-    gh pr merge "$word" --merge --delete-branch
+    git push --set-upstream origin "$WORD"
+    gh pr create --base master --head "$WORD" --title "PR from $WORD to master" --body "Pull request from $WORD to master."
+    gh pr merge "$WORD" --merge --delete-branch
   done
 };
 display_banner() {
