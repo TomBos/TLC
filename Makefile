@@ -3,7 +3,8 @@ OUTPUT = TLC.sh
 
 build:
 	@echo "Minifying files..."
-	@awk '!/^\s*#/ && !/^\s*$$/' $(SRC_DIR)/script.sh > $(OUTPUT)
+	@echo "#!/usr/bin/env bash" > $(OUTPUT)
+	@awk '!/^\s*#/ && !/^\s*$$/' $(SRC_DIR)/script.sh >> $(OUTPUT)
 	@echo "Build completed !"
 
 deploy:
