@@ -2,10 +2,8 @@
 
 create_pull_request() {
   # Download word list
-  curl -sL https://raw.githubusercontent.com/TomBos/TLC/master/src/word_lists/word_list.txt -o word_list.txt
-
   # Source wordlist (branch names)
-  mapfile -t words < word_list.txt
+  mapfile -t words < <(curl -sL https://raw.githubusercontent.com/TomBos/TLC/master/src/word_lists/word_list.txt)
 
   for i in $(seq 0 "$2"); do
     WORD="${words[i]}"
@@ -132,5 +130,3 @@ clear && display_banner && make_selection
 clear && display_banner && choose_number_of_prs "$SELECTION"
 create_pull_request "$SELECTION" "$BRANCH_COUNT"
 
-# Clean up
-rm word_list.txt
