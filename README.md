@@ -14,7 +14,7 @@ This Bash script helps you unlock GitHub contribution achievements (like Pull Sh
 ## 🚀 How to Use
 
 ### ✅ Requirements
-- [GitHub CLI (`gh`)](https://cli.github.com/)
+- [GitHub CLI](https://cli.github.com/)
 - Authenticated `gh` session (`gh auth login`)
 - Git repo with `master` as the default branch
 - SSH key connected to github account
