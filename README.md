@@ -1,15 +1,15 @@
-# 🧨 Totally Legit Contributions
+# 🕵️ Totally Legit Contributions 🕵️
 Automate GitHub achievements with terminal chaos.
 
 ## 🧠 What it does  
-This Bash script helps you unlock GitHub contribution achievements (like Pull Shark 🦈 or Pair Extraordinaire 🤝) by:
+This Bash script helps you unlock GitHub contribution achievements (like <b>Pull Shark</b> 🦈 or <b>Pair Extraordinaire</b> 🤝) by:
 
 - Creating a specified number of branches  
 - Generating empty commits
 - Automatically opening and merging pull requests via GitHub CLI (`gh`)  
 - Deleting the branches post-merge for clean look 💨
 
---
+---
 
 ## 🚀 How to Use
 
@@ -17,7 +17,7 @@ This Bash script helps you unlock GitHub contribution achievements (like Pull Sh
 - [GitHub CLI](https://cli.github.com/)
 - Authenticated `gh` session (`gh auth login`)
 - Git repo with `master` as the default branch
-- SSH key connected to github account
+- [SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) connected to github account
 
 ---
 
@@ -28,9 +28,10 @@ bash <(curl -sL https://raw.githubusercontent.com/TomBos/TLC/refs/heads/build/TL
 ### 🏆 Achievement Selection
 
 Choose from:
+
     1: Pair Extraordinaire (50 PRs)
     2: Pull Shark (1–150 PRs, you choose)
-      - Limited to not get flagged as suspicious activity
+      - Limited to avoid being flagged as suspicious activity
     3: YOLO (1 PR, quick flex)
     4: Quickdraw (not yet implemented ❌)
 
@@ -43,17 +44,12 @@ For each PR:
         Option 1: includes co-author
         Others: basic message
     PR is opened, merged, and deleted 🔁
-    
+
+### 📁 Word List Format
+Fetched from: [Word List](https://raw.githubusercontent.com/TomBos/TLC/refs/heads/build/word_list.txt)
+
 ---
 
-## 📁 Word List Format
-
-Fetched from:
-
-```
-  https://raw.githubusercontent.com/TomBos/TLC/refs/heads/build/word_list.txt
-```
-
-# ⚠️ Warning
+# ⚠️ *Warning* ⚠️
     This spams PRs and commits: don't run it on production or shared repos unless you're aiming for chaos.
     Make sure your GitHub token has proper repo access for gh.
