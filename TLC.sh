@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 create_pull_request() {
-  mapfile -t words < <(curl -sL https://raw.githubusercontent.com/TomBos/TLC/master/src/word_lists/word_list.txt)
+  mapfile -t words < <(curl -sL https://raw.githubusercontent.com/TomBos/TLC/refs/heads/build/word_list.txt)
   for i in $(seq 0 "$2"); do
     WORD="${words[i]}"
     git checkout -b "$WORD"
