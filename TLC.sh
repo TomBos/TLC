@@ -1,8 +1,12 @@
 create_pull_request() {
+  echo "$1"
+  echo "$2"
+  exit 1
+  curl -sL https://raw.githubusercontent.com/TomBos/TLC/master/src/word_lists/word_list.txt -o word_list.txt
   mapfile -t words < word_list.txt
-  for word in "${words[@]}"; do
+  for i in $(seq 0 "$2"); do
     git checkout -b "$word"
-    if [[ "$mode" == "pair" ]]; then
+    if [[ "$1" == 1 ]]; then
       git commit --allow-empty -m "Totally Legit Co-Author
       Co-authored-by: Arch Warden <tombos255+archwarden@gmail.com>"
     else
@@ -55,12 +59,12 @@ make_selection() {
 choose_number_of_prs() {
   case $1 in 
     1)
-      echo "Selected: 1) Steady Stream"
+      echo "Selected: 1) Pair Extraordinaire"
       echo "Code will create 50 PRs to achieve this badge"
       BRANCH_COUNT=50
       ;;
     2)
-      echo "Selected: 2) Custom PR Count"
+      echo "Selected: 2) Pull Shark"
       read -rp "Enter the number of PRs you want (1–150): " input
       if [[ "$input" =~ ^[0-9]+$ ]] && (( input >= 1 && input <= 150 )); then
         BRANCH_COUNT=$input
@@ -71,7 +75,7 @@ choose_number_of_prs() {
       fi
       ;;
     3)
-      echo "Selected: 3) One Shot"
+      echo "Selected: 3) YOLO"
       echo "Code will create 1 PR to achieve this badge"
       BRANCH_COUNT=1
       ;;
@@ -92,7 +96,7 @@ if [ $? -ne 0 ]; then
   echo "User is NOT authenticated with GitHub CLI."
   exit 1
 fi
-clear && display_banner
-make_selection
-echo "$SELECTION"
-choose_number_of_prs "$SELECTION"
+clear && display_banner && make_selection
+clear && display_banner && choose_number_of_prs "$SELECTION"
+create_pull_request "$SELECTION" "$BRANCH_COUNT"
+rm word_list.txt
